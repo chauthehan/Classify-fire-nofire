@@ -1,0 +1,4 @@
+furg-fire-dataset/
+traindata/
+__pycache__/
+hdf5/

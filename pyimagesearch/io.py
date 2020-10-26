@@ -4,18 +4,18 @@ import h5py
 import os
 
 class HDF5DatasetWriter:
-	def __init__(self, dims, outputPath, dataKey="images",max_label_length=1,
+	def __init__(self, dims, outputPath, dataKey="images",
 		bufSize=1000):
 		if os.path.exists(outputPath):
 			raise ValueError("The supplied 'outputPath' already "
 				"exists and cannot be overwritten. Manually delete"
 				"the file before continuing.", outputPath)
-		self.max_label_length = max_label_length
+		#self.max_label_length = max_label_length
 
 		self.db = h5py.File(outputPath, "w")
 		self.data = self.db.create_dataset(dataKey, dims,
 			dtype="float")
-		self.labels = self.db.create_dataset("labels", (dims[0], self.max_label_length),
+		self.labels = self.db.create_dataset("labels", (dims[0], ),
 			dtype="int")	
 		self.bufSize = bufSize
 		self.buffer = {"data": [], "labels": []}
